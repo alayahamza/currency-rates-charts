@@ -1,17 +1,17 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpModule} from '@angular/http';
+import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
-import { AppComponent } from './app.component';
-import { DailyBasedExchangeRateComponent } from './daily-based-exchange-rate/daily-based-exchange-rate.component';
-import { ChartModule } from 'angular-highcharts';
+import {AppComponent} from './app.component';
+import {DailyBasedExchangeRateComponent} from './daily-based-exchange-rate/daily-based-exchange-rate.component';
+import {ChartModule} from 'angular-highcharts';
+import {NgDatepickerModule} from 'ng2-datepicker';
 
 
-import { CurrencyService } from './currency.service';
-
+import {CurrencyService} from './currency.service';
 
 @NgModule({
   declarations: [
@@ -23,9 +23,11 @@ import { CurrencyService } from './currency.service';
     HttpClientModule,
     FormsModule,
     HttpModule,
-    ChartModule
+    ChartModule,
+    NgDatepickerModule
   ],
   providers: [CurrencyService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

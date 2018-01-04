@@ -1,1 +1,17 @@
-<div [chart]="chart"></div>
+<div class="col-md-12">
+  <div class="col-md-4" id="daily-exchange-rate-date-picker">
+    <form class="form-horizontal">
+      <div class="form-group">
+        <select name="exchangeRateForDateAndBaseValue" (change)="update()" [(ngModel)]="base">
+          <option *ngFor="let item of otherCurrencies" [ngValue]="item">{{item}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <ng-datepicker (change)="update()" isOpened="true" name="exchangeRateForDateAndBaseDatePicker"
+                       [(ngModel)]="date"  [options]="options"></ng-datepicker>
+      </div>
+    </form>
+  </div>
+  <div id="daily-exchange-rate-container" class="col-md-8" [chart]="chart">
+  </div>
+</div>
