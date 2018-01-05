@@ -9,7 +9,7 @@
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu currency-list">
-            <li class="text-center currency-item" *ngFor="let item of otherCurrencies" (click)="update(item)" >
+            <li class="text-center currency-item" *ngFor="let item of otherCurrencies" (click)="updateFromCurrency(item)" >
               <span>{{item}}</span>
               <img class="currency-icon" src="assets/currency-icons/{{item}}.png">
             </li>
@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="form-group datepicker-container">
-        <ng-datepicker (click)="update()" isOpened="true" name="exchangeRateForDateAndBaseDatePicker"
+        <ng-datepicker (click)="updateFromDate()" isOpened="true" name="exchangeRateForDateAndBaseDatePicker"
                        [(ngModel)]="date" [options]="options"></ng-datepicker>
       </div>
     </form>

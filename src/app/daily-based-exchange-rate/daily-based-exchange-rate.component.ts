@@ -93,9 +93,18 @@ export class DailyBasedExchangeRateComponent implements OnInit {
     this.fetchExchangeRateForDateAndBaseData();
   }
 
-  update(currency: any) {
+  updateFromCurrency(currency: any) {
     this.date = moment(this.date).format('YYYY-MM-DD');
     this.base = currency !== undefined ? currency : this.base;
+    if (this.tmpBase !== this.base || this.tmpDate !== this.date) {
+      this.fetchExchangeRateForDateAndBaseData();
+      this.tmpBase = this.base;
+      this.tmpDate = this.date;
+    }
+  }
+
+  updateFromDate() {
+    this.date = moment(this.date).format('YYYY-MM-DD');
     if (this.tmpBase !== this.base || this.tmpDate !== this.date) {
       this.fetchExchangeRateForDateAndBaseData();
       this.tmpBase = this.base;
