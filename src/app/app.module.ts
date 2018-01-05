@@ -12,6 +12,7 @@ import {NgDatepickerModule} from 'ng2-datepicker';
 
 
 import {CurrencyService} from './currency.service';
+import {DropdownModule} from 'ngx-dropdown';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {CurrencyService} from './currency.service';
     FormsModule,
     HttpModule,
     ChartModule,
-    NgDatepickerModule
+    NgDatepickerModule,
+    DropdownModule
   ],
   providers: [CurrencyService],
   bootstrap: [AppComponent]

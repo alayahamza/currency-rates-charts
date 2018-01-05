@@ -16,8 +16,10 @@ export class DailyBasedExchangeRateComponent implements OnInit {
 
   chart = {};
   date = moment().format('YYYY-MM-DD');
+  tmpDate = this.date;
   exchangeRateForDateAndBase: any;
   base = 'EUR';
+  tmpBase = this.base;
   otherCurrencies = [];
   options: DatepickerOptions = {
     minYear: 1970,
@@ -41,17 +43,19 @@ export class DailyBasedExchangeRateComponent implements OnInit {
         const ratesKeysIterator = Object.keys(this.exchangeRateForDateAndBase.rates);
         const data = [];
         let index = 0;
+        this.otherCurrencies = [];
         this.otherCurrencies.push(this.base);
         ratesKeysIterator.forEach(element => {
           let val: any[];
-          val = [element, this.exchangeRateForDateAndBase.rates[element] / 10000];
+          const dicimalVal = parseFloat((this.exchangeRateForDateAndBase.rates[element] / 1000).toFixed(4));
+          val = [element, dicimalVal];
           this.otherCurrencies.push(element);
           data.push(val);
           index++;
         });
         this.chart = new Chart({
           chart: {
-            type: 'areaspline'
+            type: 'line'
           },
           title: {
             text: 'Exchange rate by date ' + this.exchangeRateForDateAndBase.base + ' : ' + this.exchangeRateForDateAndBase.date
@@ -69,6 +73,14 @@ export class DailyBasedExchangeRateComponent implements OnInit {
           legend: {
             enabled: false
           },
+          plotOptions: {
+            line: {
+              dataLabels: {
+                enabled: true
+              },
+              enableMouseTracking: false
+            }
+          },
           series: [{
             name: '',
             data: data
@@ -81,10 +93,13 @@ export class DailyBasedExchangeRateComponent implements OnInit {
     this.fetchExchangeRateForDateAndBaseData();
   }
 
-  update() {
+  update(currency: any) {
     this.date = moment(this.date).format('YYYY-MM-DD');
-    console.log(this.date);
-    console.log(this.base);
-    this.fetchExchangeRateForDateAndBaseData();
+    this.base = currency !== undefined ? currency : this.base;
+    if (this.tmpBase !== this.base || this.tmpDate !== this.date) {
+      this.fetchExchangeRateForDateAndBaseData();
+      this.tmpBase = this.base;
+      this.tmpDate = this.date;
+    }
   }
 }

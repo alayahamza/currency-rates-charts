@@ -1,14 +1,24 @@
 <div class="col-md-12">
   <div class="col-md-4" id="daily-exchange-rate-date-picker">
-    <form class="form-horizontal">
+    <form class="form-inline">
       <div class="form-group">
-        <select name="exchangeRateForDateAndBaseValue" (change)="update()" [(ngModel)]="base">
-          <option *ngFor="let item of otherCurrencies" [ngValue]="item">{{item}}</option>
-        </select>
+        <div class="dropdown currency-btn" dropdown >
+          <button class="btn btn-primary" dropdown-open>
+            <span>{{base}}</span>
+            <img class="currency-icon" src="assets/currency-icons/{{base}}.png">
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu currency-list">
+            <li class="text-center currency-item" *ngFor="let item of otherCurrencies" (click)="update(item)" >
+              <span>{{item}}</span>
+              <img class="currency-icon" src="assets/currency-icons/{{item}}.png">
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="form-group">
-        <ng-datepicker (change)="update()" isOpened="true" name="exchangeRateForDateAndBaseDatePicker"
-                       [(ngModel)]="date"  [options]="options"></ng-datepicker>
+      <div class="form-group datepicker-container">
+        <ng-datepicker (click)="update()" isOpened="true" name="exchangeRateForDateAndBaseDatePicker"
+                       [(ngModel)]="date" [options]="options"></ng-datepicker>
       </div>
     </form>
   </div>

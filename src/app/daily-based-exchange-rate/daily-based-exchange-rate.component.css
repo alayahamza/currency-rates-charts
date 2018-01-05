@@ -1,3 +1,31 @@
-#daily-exchange-rate-date-picker{
-    padding: 1%;
+#daily-exchange-rate-date-picker {
+  padding: 1%;
+}
+
+.currency-icon {
+  width: 10%;
+  height: 10%;
+}
+
+.currency-btn {
+  margin: 1%;
+  margin-left: 0%;
+  width: 50%;
+}
+input{
+  width: 200% !important;
+}
+
+.currency-list{
+  height: 40vh;
+  overflow-y: auto;
+}
+
+.currency-item:hover{
+  background-color: #9dc7f1;
+  cursor: pointer;
+}
+
+#daily-exchange-rate-container{
+  z-index: -1;
 }
